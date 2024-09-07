@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CRUD_Using_Repository.Models.User> // The model is a collection of User objects
+@{
+    ViewData["Title"] = "GetUserList"; // Setting the page title to "GetUserList"
+}
+
+<div class="container">
+    <div class="row">
+
+        <!-- TempData alerts for success and error messages -->
+        @if (TempData["userError"] != null)
+        {
+            <div class="alert alert-danger notification text-center">
+                @TempData["userError"] <!-- Display the error message -->
+            </div>
+        }
+        @if (TempData["userSuccess"] != null)
+        {
+            <div class="alert alert-success notification text-center">
+                @TempData["userSuccess"] <!-- Display the success message -->
+            </div>
+        }
+
+        <div class="col-10 offset-1">
+            <div class="float-end">
+                <!-- Add User button -->
+                <a class="btn btn-sm btn-primary p-1 m-1" asp-action="AddUser" asp-controller="User">Add User</a>
+            </div>
+
+            <!-- Table to display user data -->
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="text-center bg-dark text-light">
+                    <tr>
+                        <th>UserId</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>PinCode</th>
+                        <th>IsActive</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through the users and display each one in a row -->
+                    @foreach (var d in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@d.UserId</td> <!-- Display the UserId -->
+                            <td>@d.Name</td> <!-- Display the Name -->
+                            <td>@d.Gender</td> <!-- Display the Gender -->
+                            <td>@d.Email</td> <!-- Display the Email -->
+                            <td>@d.PinCode</td> <!-- Display the PinCode -->
+                            <td>
+                                <!-- Display a checkbox for IsActive (checked if true, unchecked if false) -->
+                                @if (d.IsActive)
+                                {
+                                    <input type="checkbox" value="@d.IsActive" checked="checked" disabled />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@d.IsActive" disabled />
+                                }
+                            </td>
+                            <td>
+                                <!-- Action buttons for Edit, Details, and Delete -->
+                                <a class="btn btn-sm btn-primary m-1" asp-controller="User" asp-action="Edit" asp-route-id="@d.UserId">Edit</a> |
+                                <a class="btn btn-sm btn-info m-1" asp-controller="User" asp-action="Details" asp-route-id="@d.UserId">Details</a> |
+                                <a class="btn btn-sm btn-danger m-1" asp-controller="User" asp-action="DeleteRecord" asp-route-id="@d.UserId" onclick="return confirm('Are you sure you want to delete the record?')">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

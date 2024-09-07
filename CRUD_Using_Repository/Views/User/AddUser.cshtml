@@ -1,0 +1,57 @@
+﻿@model CRUD_Using_Repository.Models.User // The model used in this view is the User class
+@{
+    ViewData["Title"] = "AddUser"; // Setting the page title to "AddUser"
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-4 rounded rounded-3">
+            <!-- Center the form using Bootstrap classes -->
+            <h3 class="text-info p-2 m-1">Add User</h3> <!-- Header for the form -->
+            <!-- The form that will POST data to the AddUser action in the UserController -->
+            <form method="post" asp-action="AddUser">
+
+                <!-- Name field -->
+                <div class="form-check">
+                    <label asp-for="Name"></label> <!-- Label for the Name field -->
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name" /> <!-- Textbox for the Name -->
+                </div>
+
+                <!-- Gender field -->
+                <div class="form-check">
+                    <label asp-for="Gender"></label><br /> <!-- Label for Gender -->
+                    <!-- Radio buttons for Gender (Male, Female, Other) -->
+                    <label>
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Male" /> Male
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Female" /> Female
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Other" /> Other
+                    </label>
+                </div>
+
+                <!-- Email field -->
+                <div class="form-check">
+                    <label asp-for="Email"></label> <!-- Label for Email -->
+                    <input type="email" asp-for="Email" class="form-control" placeholder="Enter Email" /> <!-- Email input -->
+                </div>
+
+                <!-- PinCode field -->
+                <div class="form-check">
+                    <label asp-for="PinCode"></label> <!-- Label for PinCode -->
+                    <input type="number" asp-for="PinCode" class="form-control" placeholder="Enter PinCode" /> <!-- Number input for PinCode -->
+                </div>
+
+                <!-- IsActive checkbox -->
+                <div class="form-check">
+                    <label asp-for="IsActive"></label> <!-- Label for IsActive -->
+                    <input type="checkbox" asp-for="IsActive" class="form-check-inline" checked="checked" /> <!-- Checkbox for IsActive -->
+                </div>
+
+                <!-- Submit button -->
+                <div>
+                    <input type="submit" class="btn btn-sm btn-primary m-2 p-2 float-end" value="Save" /> <!-- Button to submit the form -->
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

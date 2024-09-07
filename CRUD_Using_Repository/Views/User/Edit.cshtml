@@ -1,0 +1,81 @@
+﻿@model CRUD_Using_Repository.Models.User // The view is strongly typed to the User model
+@{
+    ViewData["Title"] = "Edit"; // Setting the page title to "Edit"
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-4 rounded rounded-3">
+            <!-- Center the form using Bootstrap -->
+            <h3 class="text-info p-2 m-1">Update User</h3> <!-- Heading for the form -->
+            <!-- Form that posts data to the Edit action in the UserController -->
+            <form method="post" asp-action="Edit">
+
+                <!-- Name field -->
+                <div class="form-check">
+                    <label asp-for="Name"></label> <!-- Label for the Name property -->
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name" /> <!-- Input field for Name -->
+
+                    <input type="hidden" asp-for="UserId" /> <!-- Hidden field for UserId to ensure the correct user is updated -->
+                    <!-- Validation error message for Name, if any -->
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <!-- Gender field -->
+                <div class="form-check">
+                    <label asp-for="Name"></label> <!-- This should be corrected to asp-for="Gender" -->
+                    <input type="text" asp-for="Gender" class="form-control" placeholder="Enter Gender" /> <!-- Text field for Gender -->
+
+                    <span class="text-danger" asp-validation-for="Gender"></span> <!-- Validation error message for Gender -->
+                </div>
+
+                <!-- Gender radio buttons -->
+                <div class="form-check">
+                    <label asp-for="Gender"></label><br /> <!-- Label for Gender -->
+                    <!-- Radio buttons for selecting Gender -->
+                    <label>
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Male" /> Male
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Female" /> Female
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Other" /> Other
+                    </label>
+                </div>
+
+                <!-- Email field -->
+                <div class="form-check">
+                    <label asp-for="Email"></label> <!-- Label for Email -->
+                    <input type="email" asp-for="Email" class="form-control" placeholder="Enter Email" /> <!-- Input field for Email -->
+
+                    <span class="text-danger" asp-validation-for="Email"></span> <!-- Validation error message for Email -->
+                </div>
+
+                <!-- PinCode field -->
+                <div class="form-check">
+                    <label asp-for="PinCode"></label> <!-- Label for PinCode -->
+                    <input type="number" asp-for="PinCode" class="form-control" placeholder="Enter PinCode" /> <!-- Input field for PinCode -->
+
+                    <span class="text-danger" asp-validation-for="PinCode"></span> <!-- Validation error message for PinCode -->
+                </div>
+
+                <!-- IsActive checkbox field -->
+                <div class="form-check">
+                    <label asp-for="IsActive"></label> <!-- Label for IsActive -->
+                    <!-- Conditional rendering for the IsActive checkbox based on the model value -->
+                    @if (@Model.IsActive == true)
+                    {
+                        <input type="checkbox" asp-for="IsActive" class="form-check-inline" checked="checked" /> <!-- Checked if IsActive is true -->
+                    }
+                    else
+                    {
+                        <input type="checkbox" asp-for="IsActive" class="form-check-inline" /> <!-- Unchecked otherwise -->
+                    }
+                </div>
+
+                <!-- Submit button to update the user -->
+                <div>
+                    <input type="submit" class="btn btn-sm btn-warning m-2 p-2 float-end" value="Update" /> <!-- Submit button styled with Bootstrap -->
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
