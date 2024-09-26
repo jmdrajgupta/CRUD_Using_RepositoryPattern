@@ -1,0 +1,1 @@
+Developed a robust CRUD (Create, Read, Update, Delete) application utilizing ASP.NET Core and the Repository Pattern to enhance data management and separation of concerns. The application interfaces with a SQL Server database to perform efficient data operations and includes features such as user authentication, input validation, and error handling.
